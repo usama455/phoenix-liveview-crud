@@ -1,0 +1,27 @@
+<div>
+    <h2><%= @title %></h2>
+    <p> <%=@user.name%></p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Requests</th>
+            <th>Action</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="all_users">
+        <%= for current_user <- @all_users do %>
+       <%= if current_user.name != @user.name do%>
+        <tr id={"user-#{current_user.id}"}>
+            <td><%= current_user.name %></td>
+            <td><%= current_user.requests %></td>
+            <td><button phx-click="send_req"  phx-target={@myself} value={current_user.id} >Req</button></td>
+        </tr>
+        <% end %>
+        <% end %>
+        </tbody>
+    </table>
+
+</div>
